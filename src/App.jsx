@@ -590,12 +590,12 @@ export default function JhanaApp() {
     <Page>
       <Back fn={goHome} />
       <h1 style={{ fontSize: 18, fontWeight: 500, margin: "0 0 4px" }}>The method</h1>
-      <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 4px", lineHeight: 1.6 }}>Jhourney's approach in six steps. The entire method reduces to two instructions: bring up an open-hearted feeling, then relax into it.</p>
+      <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 4px", lineHeight: 1.6 }}>Jhourney's approach in 14 steps. The entire method reduces to two instructions: bring up an open-hearted feeling, then relax into it.</p>
       <p style={{ fontSize: 11, color: DK.textDim, margin: "0 0 18px", fontStyle: "italic" }}>Tap any step to expand.</p>
       {STEPS.map((st, i) => { const open = es === i; return (
-        <Card key={i} onClick={() => setEs(open ? null : i)} style={{ marginBottom: 6, borderLeft: open ? `2px solid ${JHANAS[i].color}40` : `0.5px solid ${DK.border}`, borderRadius: open ? "0 12px 12px 0" : 12 }}>
+        <Card key={i} onClick={() => setEs(open ? null : i)} style={{ marginBottom: 6, borderLeft: open ? `2px solid ${DK.accent}40` : `0.5px solid ${DK.border}`, borderRadius: open ? "0 12px 12px 0" : 12 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ width: 28, height: 28, borderRadius: "50%", background: `${JHANAS[i].color}0C`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0, color: JHANAS[i].color, opacity: 0.7 }}>{st.icon}</div>
+            <div style={{ width: 28, height: 28, borderRadius: "50%", background: `${DK.accent}0C`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, flexShrink: 0, color: DK.accent, opacity: 0.7 }}>{st.icon}</div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 13, fontWeight: 500 }}>{i + 1}. {st.title}</div>
               <div style={{ fontSize: 11, color: DK.textMuted }}>{st.subtitle}</div>
