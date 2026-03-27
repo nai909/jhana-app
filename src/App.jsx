@@ -40,13 +40,65 @@ const JHANAS = [
 ];
 
 const STEPS = [
-  { title: "Prepare", subtitle: "Relax deeply", icon: "○", detail: "Sit comfortably or lie down. Try to fall asleep, but stop just before you do. Reach a level of physical relaxation you've never experienced while remaining alert. Deep bodily ease with mental clarity." },
-  { title: "Feel", subtitle: "Find your scaffold", icon: "♡", detail: "Think of someone you love. A memory of pure joy. A phrase invoking warmth. Focus not on the thought, but on what it does to your body — the warmth in your chest, the subtle expansion. That embodied signature is your meditation object." },
-  { title: "Sustain", subtitle: "Pulse and glide", icon: "◐", detail: "Pulse: gently re-invoke the scaffolding for 5–30 seconds. Glide: let the feeling resonate without effort. When it fades, notice that fade — it may be an invitation to relax deeper. The glide is where the magic happens." },
-  { title: "Deepen", subtitle: "Three questions", icon: "◇", detail: "Can I relax more? Can I enjoy this more? Can I bring more wonder to this? One elegant move: how would it feel to give the feeling away? Joy is often a byproduct of generosity." },
-  { title: "Enter", subtitle: "Allow the loop", icon: "◉", detail: "Allow the joy to grow and loop upon itself. If it dissipates, pulse again. Don't think too much. When euphoria hits — hands tingling, chest buzzing — you're in J1. It has a distinct momentum, magnitude, and afterglow." },
-  { title: "Progress", subtitle: "Stay, don't push", icon: "∞", detail: "To progress through J2–J4: stay in the current state, be present, don't try to change it. It will evolve on its own. Notice how it changes until you find yourself in a qualitatively different state." },
+  {
+    title: "Prepare",
+    subtitle: "Relax deeply",
+    icon: "○",
+    visual: "arbor-mundi",
+    detail: "Sit comfortably or lie down. Try to fall asleep, but stop just before you do. Reach a level of physical relaxation you've never experienced while remaining alert. Deep bodily ease with mental clarity.",
+    expanded: "The goal is not trance — it's deep bodily ease with mental clarity. One practical hack: try to fall asleep but stop just before you actually do. This helps you reach a level of physical relaxation most people have never experienced while remaining alert. Clear your mind of distractions. Let the roots of your attention sink down into stillness."
+  },
+  {
+    title: "Feel",
+    subtitle: "Find your scaffold",
+    icon: "♡",
+    visual: "corpus-stellae",
+    detail: "Think of someone you love. A memory of pure joy. A phrase invoking warmth. Focus not on the thought, but on what it does to your body — the warmth in your chest, the subtle expansion. That embodied signature is your meditation object.",
+    expanded: "The scaffolding itself is not your meditation object — the feeling it generates is. You're not focusing on the thought; you're focusing on the emotion, especially its embodied signature. Think of someone you love, then notice what happens in your chest, head, or gut. That warmth, that subtle expansion — that's your object. Not the person, but what thinking about them does to your body. Feel the energy channels begin to open."
+  },
+  {
+    title: "Sustain",
+    subtitle: "Pulse and glide",
+    icon: "◐",
+    visual: "templum-sonorum",
+    detail: "Pulse: gently re-invoke the scaffolding for 5–30 seconds. Glide: let the feeling resonate without effort. When it fades, notice that fade — it may be an invitation to relax deeper. The glide is where the magic happens.",
+    expanded: "Once you have a feeling, the instinct is to grip it. Don't. Pulse means gently re-invoking the scaffolding. Glide means letting the feeling resonate without effort. The biggest mistake is stacking pulses frantically because you're afraid of losing the feeling. The glide is where the magic happens. Think of it like a sneeze — it requires some intentionality, but only happens if you don't think too hard about it. Let the resonance build like sound waves in a temple."
+  },
+  {
+    title: "Deepen",
+    subtitle: "Three questions",
+    icon: "◇",
+    visual: "aqua-vitae",
+    detail: "Can I relax more? Can I enjoy this more? Can I bring more wonder to this? One elegant move: how would it feel to give the feeling away? Joy is often a byproduct of generosity.",
+    expanded: "When you have a feeling established, three questions open pathways into depth. Can I relax more? (Check for tension you might be adding.) Can I enjoy this more? (Are you actually receiving, or just observing?) Can I bring more wonder to this? (Interest without agenda.) One particularly elegant move that blends all three: how would it feel to give the feeling away? This is a pointer to a subtle way of relating to experience. Let yourself flow deeper, like water finding its level."
+  },
+  {
+    title: "Enter",
+    subtitle: "Allow the loop",
+    icon: "◉",
+    visual: "crystallum-infinitum",
+    detail: "Allow the joy to grow and loop upon itself. If it dissipates, pulse again. Don't think too much. When euphoria hits — hands tingling, chest buzzing — you're in J1. It has a distinct momentum, magnitude, and afterglow.",
+    expanded: "Allow the joy to grow and loop upon itself, feeling more and more joyful. Once pulsing and gliding reliably result in a feeling, see if you can allow the feeling to grow by feeding on itself — extend gratitude toward gratitude, or joyfully celebrate your joy. This is the attention-pleasure feedback loop beginning to take hold. If it dissipates, pulse again. Don't think too much. When euphoria hits — hands and chest may tingle — you're entering J1. It will have a distinct type of momentum, magnitude, and afterglow. Let the clarity crystallize."
+  },
+  {
+    title: "Progress",
+    subtitle: "Stay, don't push",
+    icon: "∞",
+    visual: "porta-dimensionum",
+    detail: "To progress through J2–J4: stay in the current state, be present, don't try to change it. It will evolve on its own. Notice how it changes until you find yourself in a qualitatively different state.",
+    expanded: "To progress from J1 to J2, do not try to force anything. Stay in the moment and enjoy the sensation. If it does not dissipate, it will begin to evolve on its own. Notice how it is changing until you find yourself in a qualitatively different state. Repeat to progress further: stay with the current state, be present, don't try to change or interact with it. The door opens before you — not through effort, but through allowing. You are being pulled, not pushed."
+  },
 ];
+
+// Map steps to visual scenes for the progressive journey
+const STEP_VISUALS = {
+  "arbor-mundi": ArborMundi,        // Grounding, roots, settling
+  "corpus-stellae": CorpusStellae,   // Body awareness, energy channels
+  "templum-sonorum": TemplumSonorum, // Resonance, waves, rhythm
+  "aqua-vitae": AquaVitae,           // Flowing deeper, releasing
+  "crystallum-infinitum": CrystallumInfinitum, // Clarity crystallizing
+  "porta-dimensionum": PortaDimensionum, // Opening to vastness
+};
 
 const MISTAKES = [
   { title: "Over-efforting", fix: "Try half as hard. Then half as hard again.", desc: "Practice feels like work. Subtle strain in forehead or jaw. You're concentrating at the experience rather than resting in it. There exists a level of non-effort most people have never experienced while remaining alert.", color: "#E24B4A" },
@@ -187,6 +239,85 @@ function GazeSceneWrapper({ sceneId, onBack }) {
       >
         ← Back
       </button>
+    </div>
+  );
+}
+
+// Practice Visual Background - renders the visual for the current step with crossfade
+function PracticeVisual({ stepIndex, active }) {
+  const [prevStep, setPrevStep] = useState(stepIndex);
+  const [transitioning, setTransitioning] = useState(false);
+
+  useEffect(() => {
+    if (stepIndex !== prevStep && active) {
+      setTransitioning(true);
+      const timer = setTimeout(() => {
+        setPrevStep(stepIndex);
+        setTransitioning(false);
+      }, 800); // Crossfade duration
+      return () => clearTimeout(timer);
+    }
+  }, [stepIndex, prevStep, active]);
+
+  if (!active) return null;
+
+  const currentVisualId = STEPS[stepIndex]?.visual;
+  const prevVisualId = STEPS[prevStep]?.visual;
+  const CurrentVisual = STEP_VISUALS[currentVisualId];
+  const PrevVisual = STEP_VISUALS[prevVisualId];
+
+  return (
+    <div style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100vw",
+      height: "100vh",
+      zIndex: 0,
+      overflow: "hidden"
+    }}>
+      {/* Previous visual (fading out) */}
+      {transitioning && PrevVisual && prevVisualId !== currentVisualId && (
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          opacity: 0,
+          transition: "opacity 0.8s ease-out",
+          zIndex: 1
+        }}>
+          <PrevVisual />
+        </div>
+      )}
+
+      {/* Current visual */}
+      {CurrentVisual && (
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          opacity: transitioning ? 0 : 0.35,
+          transition: "opacity 0.8s ease-in",
+          zIndex: 2
+        }}>
+          <CurrentVisual />
+        </div>
+      )}
+
+      {/* Dark overlay for readability */}
+      <div style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "linear-gradient(to bottom, rgba(8,8,11,0.75) 0%, rgba(8,8,11,0.85) 50%, rgba(8,8,11,0.9) 100%)",
+        zIndex: 3
+      }} />
     </div>
   );
 }
@@ -402,42 +533,144 @@ export default function JhanaApp() {
   );
 
   if (view === "practice") return (
-    <Page>
-      <Back fn={goHome} />
-      {!pa ? (
-        <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
-          <h1 style={{ fontSize: 18, fontWeight: 500, margin: "0 0 6px" }}>Practice session</h1>
-          <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 26px", lineHeight: 1.6 }}>A gentle guided container. The breathing circle helps you settle into deep relaxation. Once you move to the feeling, let the breath go.</p>
-          <div style={{ marginBottom: 26, padding: "16px", background: "rgba(255,255,255,0.02)", borderRadius: 10, textAlign: "left" }}>
-            <p style={{ fontSize: 10, fontWeight: 600, color: DK.textDim, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: 0.8 }}>Before you begin</p>
-            <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.75 }}>Find a comfortable position. Sit or lie down — whatever lets you be deeply relaxed while alert. Close your eyes when ready. If you feel strain, try half as hard. Then half as hard again.</p>
-          </div>
-          <button onClick={() => { setPa(true); setPs(0); }} style={{ padding: "10px 40px", borderRadius: 20, fontSize: 13, fontWeight: 500, border: "none", background: `${DK.accent}18`, color: DK.accent, cursor: "pointer", letterSpacing: 0.3 }}>Begin</button>
+    <>
+      {/* Visual background layer */}
+      <PracticeVisual stepIndex={ps} active={pa} />
+
+      <Page>
+        <div style={{ position: "relative", zIndex: 10 }}>
+          <Back fn={() => { setPa(false); setPs(0); goHome(); }} />
+          {!pa ? (
+            <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
+              <h1 style={{ fontSize: 18, fontWeight: 500, margin: "0 0 6px" }}>Practice session</h1>
+              <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 26px", lineHeight: 1.6 }}>A gentle guided container. The breathing circle helps you settle into deep relaxation. As you progress, the visual world evolves with your journey.</p>
+              <div style={{ marginBottom: 26, padding: "16px", background: "rgba(255,255,255,0.02)", borderRadius: 10, textAlign: "left" }}>
+                <p style={{ fontSize: 10, fontWeight: 600, color: DK.textDim, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: 0.8 }}>Before you begin</p>
+                <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.75 }}>Find a comfortable position. Sit or lie down — whatever lets you be deeply relaxed while alert. Close your eyes when ready. If you feel strain, try half as hard. Then half as hard again.</p>
+              </div>
+              <div style={{ marginBottom: 26, padding: "16px", background: "rgba(107,197,210,0.04)", borderRadius: 10, border: `0.5px solid ${DK.accent}15` }}>
+                <p style={{ fontSize: 10, fontWeight: 600, color: DK.accent, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: 0.8, opacity: 0.7 }}>Visual journey</p>
+                <p style={{ fontSize: 11, color: DK.textMuted, lineHeight: 1.6, margin: 0 }}>Each step unfolds a new visual world — from grounding roots to cosmic portals. Let them be a gentle backdrop to your inner journey.</p>
+              </div>
+              <button onClick={() => { setPa(true); setPs(0); }} style={{ padding: "10px 40px", borderRadius: 20, fontSize: 13, fontWeight: 500, border: "none", background: `${DK.accent}18`, color: DK.accent, cursor: "pointer", letterSpacing: 0.3 }}>Begin</button>
+            </div>
+          ) : (
+            <div style={{ textAlign: "center" }}>
+              {/* Breathing circle - fades as you progress deeper */}
+              <div style={{ display: "flex", justifyContent: "center", padding: "12px 0", opacity: ps === 0 ? 1 : Math.max(0, 1 - ps * 0.35), transition: "opacity 1s ease", pointerEvents: ps > 1 ? "none" : "auto" }}>
+                {ps <= 2 && <BreathCircle active={pa} />}
+              </div>
+              {ps > 2 && <div style={{ height: 40 }} />}
+
+              {/* Step indicator with visual name */}
+              <div style={{ marginBottom: 8 }}>
+                <span style={{ fontSize: 10, color: DK.textDim, textTransform: "uppercase", letterSpacing: 1.2 }}>
+                  Step {ps + 1} of {STEPS.length}
+                </span>
+              </div>
+
+              {/* Step content */}
+              <div style={{ marginBottom: 18 }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 8 }}>
+                  <span style={{ fontSize: 18, opacity: 0.4 }}>{STEPS[ps].icon}</span>
+                  <div style={{ fontSize: 18, fontWeight: 500 }}>{STEPS[ps].title}</div>
+                </div>
+                <div style={{ fontSize: 12, color: DK.accent, marginBottom: 12, opacity: 0.7 }}>{STEPS[ps].subtitle}</div>
+                <p style={{ fontSize: 13, color: DK.text, lineHeight: 1.8, margin: "0 auto", maxWidth: 480, opacity: 0.85 }}>{STEPS[ps].expanded}</p>
+              </div>
+
+              {/* Progress dots */}
+              <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 18 }}>
+                {STEPS.map((step, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setPs(i)}
+                    style={{
+                      width: i === ps ? 24 : 8,
+                      height: 8,
+                      borderRadius: 4,
+                      border: "none",
+                      padding: 0,
+                      background: i === ps ? JHANAS[i].color : `${JHANAS[i].color}25`,
+                      cursor: "pointer",
+                      transition: "all 0.4s ease"
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Three questions reminder for deepen stage */}
+              {ps >= 3 && ps < 5 && (
+                <div style={{ display: "flex", gap: 5, justifyContent: "center", flexWrap: "wrap", marginBottom: 18 }}>
+                  {["Can I relax more?", "Can I enjoy this more?", "Can I bring more wonder?"].map((q, i) => (
+                    <Chip key={i}>{q}</Chip>
+                  ))}
+                </div>
+              )}
+
+              {/* Navigation buttons */}
+              <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+                {ps > 0 && (
+                  <button
+                    onClick={() => setPs(p => p - 1)}
+                    style={{
+                      padding: "9px 20px",
+                      borderRadius: 18,
+                      fontSize: 12,
+                      border: `0.5px solid ${DK.border}`,
+                      background: "rgba(255,255,255,0.02)",
+                      color: DK.textMuted,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    ← Previous
+                  </button>
+                )}
+                {ps < STEPS.length - 1 && (
+                  <button
+                    onClick={() => setPs(p => p + 1)}
+                    style={{
+                      padding: "9px 24px",
+                      borderRadius: 18,
+                      fontSize: 12,
+                      fontWeight: 500,
+                      border: `0.5px solid ${JHANAS[ps + 1].color}35`,
+                      background: `${JHANAS[ps + 1].color}12`,
+                      color: JHANAS[ps + 1].color,
+                      cursor: "pointer",
+                      transition: "all 0.2s"
+                    }}
+                  >
+                    Next step →
+                  </button>
+                )}
+                <button
+                  onClick={() => { setPa(false); setPs(0); }}
+                  style={{
+                    padding: "9px 20px",
+                    borderRadius: 18,
+                    fontSize: 12,
+                    border: `0.5px solid ${DK.border}`,
+                    background: "transparent",
+                    color: DK.textDim,
+                    cursor: "pointer"
+                  }}
+                >
+                  End session
+                </button>
+              </div>
+
+              {/* Current visual indicator */}
+              <div style={{ marginTop: 28, padding: "12px 16px", background: "rgba(255,255,255,0.02)", borderRadius: 8, display: "inline-block" }}>
+                <span style={{ fontSize: 10, color: DK.textDim, textTransform: "uppercase", letterSpacing: 0.8 }}>Visual: </span>
+                <span style={{ fontSize: 10, color: DK.accent, opacity: 0.7 }}>{STEPS[ps].visual.replace(/-/g, ' ')}</span>
+              </div>
+            </div>
+          )}
         </div>
-      ) : (
-        <div style={{ textAlign: "center" }}>
-          <div style={{ display: "flex", justifyContent: "center", padding: "12px 0", opacity: ps === 0 ? 1 : Math.max(0, 1 - ps * 0.4), transition: "opacity 0.8s ease", pointerEvents: ps > 1 ? "none" : "auto" }}>
-            {ps <= 2 && <BreathCircle active={pa} />}
-          </div>
-          {ps > 1 && <div style={{ height: 16 }} />}
-          <div style={{ marginBottom: 18 }}>
-            <div style={{ fontSize: 16, fontWeight: 500, marginBottom: 6 }}>{STEPS[ps].title}</div>
-            <p style={{ fontSize: 12, color: DK.textMuted, lineHeight: 1.7, margin: "0 auto", maxWidth: 440 }}>{STEPS[ps].detail}</p>
-          </div>
-          <div style={{ display: "flex", justifyContent: "center", gap: 5, marginBottom: 18 }}>
-            {STEPS.map((_, i) => <button key={i} onClick={() => setPs(i)} style={{ width: i === ps ? 18 : 5, height: 5, borderRadius: 3, border: "none", padding: 0, background: i === ps ? DK.accent : `${DK.accent}18`, cursor: "pointer", transition: "all 0.3s" }} />)}
-          </div>
-          {ps >= 3 && <div style={{ display: "flex", gap: 5, justifyContent: "center", flexWrap: "wrap", marginBottom: 18 }}>
-            {["Can I relax more?","Can I enjoy this more?","Can I bring more wonder?"].map((q,i) => <Chip key={i}>{q}</Chip>)}
-          </div>}
-          <div style={{ display: "flex", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
-            {ps > 0 && <button onClick={() => setPs(p => p - 1)} style={{ padding: "7px 18px", borderRadius: 16, fontSize: 11, border: `0.5px solid ${DK.border}`, background: "transparent", color: DK.textMuted, cursor: "pointer" }}>Previous</button>}
-            {ps < STEPS.length - 1 && <button onClick={() => setPs(p => p + 1)} style={{ padding: "7px 18px", borderRadius: 16, fontSize: 11, border: `0.5px solid ${DK.accent}28`, background: DK.accentDim, color: DK.accent, cursor: "pointer" }}>Next step</button>}
-            <button onClick={() => { setPa(false); setPs(0); }} style={{ padding: "7px 18px", borderRadius: 16, fontSize: 11, border: `0.5px solid ${DK.border}`, background: "transparent", color: DK.textMuted, cursor: "pointer" }}>End session</button>
-          </div>
-        </div>
-      )}
-    </Page>
+      </Page>
+    </>
   );
 
   if (view === "gaze") return (
