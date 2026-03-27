@@ -548,10 +548,6 @@ export default function JhanaApp() {
                 <p style={{ fontSize: 10, fontWeight: 600, color: DK.textDim, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: 0.8 }}>Before you begin</p>
                 <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.75 }}>Find a comfortable position. Sit or lie down — whatever lets you be deeply relaxed while alert. Close your eyes when ready. If you feel strain, try half as hard. Then half as hard again.</p>
               </div>
-              <div style={{ marginBottom: 26, padding: "16px", background: "rgba(107,197,210,0.04)", borderRadius: 10, border: `0.5px solid ${DK.accent}15` }}>
-                <p style={{ fontSize: 10, fontWeight: 600, color: DK.accent, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: 0.8, opacity: 0.7 }}>Visual journey</p>
-                <p style={{ fontSize: 11, color: DK.textMuted, lineHeight: 1.6, margin: 0 }}>Each step unfolds a new visual world — from grounding roots to cosmic portals. Let them be a gentle backdrop to your inner journey.</p>
-              </div>
               <button onClick={() => { setPa(true); setPs(0); }} style={{ padding: "10px 40px", borderRadius: 20, fontSize: 13, fontWeight: 500, border: "none", background: `${DK.accent}18`, color: DK.accent, cursor: "pointer", letterSpacing: 0.3 }}>Begin</button>
             </div>
           ) : (
@@ -661,11 +657,6 @@ export default function JhanaApp() {
                 </button>
               </div>
 
-              {/* Current visual indicator */}
-              <div style={{ marginTop: 28, padding: "12px 16px", background: "rgba(255,255,255,0.02)", borderRadius: 8, display: "inline-block" }}>
-                <span style={{ fontSize: 10, color: DK.textDim, textTransform: "uppercase", letterSpacing: 0.8 }}>Visual: </span>
-                <span style={{ fontSize: 10, color: DK.accent, opacity: 0.7 }}>{STEPS[ps].visual.replace(/-/g, ' ')}</span>
-              </div>
             </div>
           )}
         </div>
