@@ -115,7 +115,6 @@ function BreathingLava({ active }) {
     if (!active || !containerRef.current) return;
 
     const scene = new THREE.Scene();
-    sceneRef.current = scene;
     const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
     camera.position.set(0, 0, 6);
 
