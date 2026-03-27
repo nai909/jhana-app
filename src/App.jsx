@@ -189,56 +189,6 @@ const Card = ({ children, style = {}, onClick }) => {
 const Back = ({ fn }) => <button onClick={fn} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, color: DK.textMuted, padding: "18px 0 10px" }}>← Back</button>;
 const Chip = ({ children }) => <span style={{ fontSize: 11, padding: "4px 12px", background: "rgba(255,255,255,0.035)", borderRadius: 12, color: DK.textMuted }}>{children}</span>;
 
-// Scene components map
-const SCENE_COMPONENTS = {
-  "labyrinthus-sacrum": LabyrinthusScrum,
-  "templum-sonorum": TemplumSonorum,
-  "porta-dimensionum": PortaDimensionum,
-  "nervus-cosmicus": NervusCosmicus,
-  "corpus-stellae": CorpusStellae,
-  "crystallum-infinitum": CrystallumInfinitum,
-  "aqua-vitae": AquaVitae,
-  "arbor-mundi": ArborMundi,
-  "caelum-mechanicum": CaelumMechanicum,
-  "oceanus-profundus": OceanusProfundus,
-  "machina-temporis": MachinaTemporis,
-};
-
-// Gaze Scene Wrapper with Back Button
-function GazeSceneWrapper({ sceneId, onBack }) {
-  const SceneComponent = SCENE_COMPONENTS[sceneId];
-
-  if (!SceneComponent) {
-    return <div style={{ color: "#fff", padding: 20 }}>Scene not found</div>;
-  }
-
-  return (
-    <div style={{ position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: 9999 }}>
-      <SceneComponent />
-      <button
-        onClick={onBack}
-        style={{
-          position: "absolute",
-          top: 20,
-          left: 20,
-          background: "rgba(0,0,0,0.6)",
-          border: "0.5px solid rgba(78,205,196,0.3)",
-          borderRadius: 8,
-          color: "rgba(78,205,196,0.7)",
-          padding: "10px 20px",
-          fontSize: 13,
-          cursor: "pointer",
-          zIndex: 10001,
-          fontFamily: "system-ui, sans-serif",
-          letterSpacing: "0.05em"
-        }}
-      >
-        ← Back
-      </button>
-    </div>
-  );
-}
-
 // Practice Visual Background - one visual per session, opacity increases with progress
 function PracticeVisual({ visualIndex, stepIndex, active }) {
   if (!active) return null;
@@ -300,23 +250,8 @@ export default function JhanaApp() {
   const [ps, setPs] = useState(0);
   const [em, setEm] = useState(null);
   const [es, setEs] = useState(null);
-  const [gazeScene, setGazeScene] = useState(0);
   const [practiceVisual, setPracticeVisual] = useState(0); // Cycles through visuals each session
   const goHome = () => { setView("home"); setPa(false); };
-
-  const SCENES = [
-    { id: "labyrinthus-sacrum", name: "Labyrinthus Sacrum", desc: "Sacred labyrinth, rose window, spiral stairs, mandala ceiling", color: "#4ecdc4" },
-    { id: "templum-sonorum", name: "Templum Sonorum", desc: "Singing bowl, Chladni patterns, circle of fifths, harmonic overtones", color: "#d4537e" },
-    { id: "porta-dimensionum", name: "Porta Dimensionum", desc: "Toroidal gateway, tesseract, wormhole tunnel, spacetime grid", color: "#9b8ec4" },
-    { id: "nervus-cosmicus", name: "Nervus Cosmicus", desc: "Neural network, synaptic connections, dendrite fractals, thought-waves", color: "#7fffe5" },
-    { id: "corpus-stellae", name: "Corpus Stellae", desc: "Vitruvian body, chakra points, spiral galaxy crown, energy channels", color: "#d4a853" },
-    { id: "crystallum-infinitum", name: "Crystallum Infinitum", desc: "Nested platonic solids, crystal growth, light refraction, geode", color: "#8bd4c4" },
-    { id: "aqua-vitae", name: "Aqua Vitae", desc: "Water surface, molecular structures, vortex spirals, fountain", color: "#4ecdc4" },
-    { id: "arbor-mundi", name: "Arbor Mundi", desc: "World tree, roots, branches, serpent, runic symbols, celestial crown", color: "#5dca70" },
-    { id: "caelum-mechanicum", name: "Caelum Mechanicum", desc: "Armillary sphere, planetary orbits, zodiac wheel, eclipse mechanisms", color: "#6b8fd4" },
-    { id: "oceanus-profundus", name: "Oceanus Profundus", desc: "Jellyfish cathedral, nautilus shell, coral reef, thermal vents", color: "#2a9d8f" },
-    { id: "machina-temporis", name: "Machina Temporis", desc: "Gear trains, hourglass, pendulum, astronomical dials, escapement", color: "#c4a87b" },
-  ];
 
   if (view === "home") return (
     <Page>
@@ -339,7 +274,7 @@ export default function JhanaApp() {
       </Card>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 26 }}>
-        {[{ k:"map",t:"The map",s:"9 jhana states",i:"◎" },{ k:"method",t:"The method",s:"6-step practice",i:"→" },{ k:"mistakes",t:"Common mistakes",s:"6 traps to avoid",i:"△" },{ k:"practice",t:"Practice",s:"Guided session",i:"●" },{ k:"gaze",t:"Gaze",s:"11 wireframe worlds",i:"◇" }].map(x =>
+        {[{ k:"map",t:"The map",s:"9 jhana states",i:"◎" },{ k:"method",t:"The method",s:"14-step practice",i:"→" },{ k:"mistakes",t:"Common mistakes",s:"6 traps to avoid",i:"△" },{ k:"practice",t:"Practice",s:"Guided session",i:"●" }].map(x =>
           <Card key={x.k} onClick={() => setView(x.k)}>
             <div style={{ fontSize: 16, marginBottom: 7, opacity: 0.3 }}>{x.i}</div>
             <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 2 }}>{x.t}</div>
@@ -451,7 +386,7 @@ export default function JhanaApp() {
             <span style={{ fontSize: 9, color: DK.textDim, transform: open ? "rotate(90deg)" : "none", transition: "transform 0.2s" }}>▶</span>
           </div>
           {open && <div style={{ marginTop: 10, paddingTop: 10, borderTop: `0.5px solid ${DK.border}` }}>
-            <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.8 }}>{st.detail}</p>
+            <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.8 }}>{st.text}</p>
           </div>}
         </Card>
       ); })}
@@ -548,18 +483,18 @@ export default function JhanaApp() {
               </div>
 
               {/* Progress dots */}
-              <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 18 }}>
+              <div style={{ display: "flex", justifyContent: "center", gap: 4, marginBottom: 18 }}>
                 {STEPS.map((step, i) => (
                   <button
                     key={i}
                     onClick={() => setPs(i)}
                     style={{
-                      width: i === ps ? 24 : 8,
-                      height: 8,
-                      borderRadius: 4,
+                      width: i === ps ? 16 : 6,
+                      height: 6,
+                      borderRadius: 3,
                       border: "none",
                       padding: 0,
-                      background: i === ps ? JHANAS[i].color : `${JHANAS[i].color}25`,
+                      background: i === ps ? DK.accent : i < ps ? `${DK.accent}50` : `${DK.accent}20`,
                       cursor: "pointer",
                       transition: "all 0.4s ease"
                     }}
@@ -595,14 +530,14 @@ export default function JhanaApp() {
                       borderRadius: 18,
                       fontSize: 12,
                       fontWeight: 500,
-                      border: `0.5px solid ${JHANAS[ps + 1].color}35`,
-                      background: `${JHANAS[ps + 1].color}12`,
-                      color: JHANAS[ps + 1].color,
+                      border: `0.5px solid ${DK.accent}35`,
+                      background: `${DK.accent}12`,
+                      color: DK.accent,
                       cursor: "pointer",
                       transition: "all 0.2s"
                     }}
                   >
-                    Next step →
+                    Next →
                   </button>
                 )}
                 <button
@@ -627,34 +562,6 @@ export default function JhanaApp() {
       </Page>
     </>
   );
-
-  if (view === "gaze") return (
-    <Page>
-      <Back fn={goHome} />
-      <h1 style={{ fontSize: 18, fontWeight: 500, margin: "0 0 4px" }}>Gaze</h1>
-      <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 20px", lineHeight: 1.6 }}>Wireframe worlds to rest your eyes on. No objectives — just continuous gentle motion.</p>
-      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        {SCENES.map((s, i) => (
-          <Card key={s.id} onClick={() => { setGazeScene(i); setView("gaze-scene"); }} style={{ borderLeft: `2px solid ${s.color}25`, borderRadius: "0 12px 12px 0" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div style={{ width: 32, height: 32, borderRadius: "50%", background: `${s.color}0C`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <div style={{ width: 7, height: 7, borderRadius: "50%", background: s.color, opacity: 0.5 }} />
-              </div>
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 500, color: DK.text }}>{s.name}</div>
-                <div style={{ fontSize: 11, color: DK.textMuted }}>{s.desc}</div>
-              </div>
-            </div>
-          </Card>
-        ))}
-      </div>
-    </Page>
-  );
-
-  if (view === "gaze-scene") {
-    const scene = SCENES[gazeScene];
-    return <GazeSceneWrapper sceneId={scene.id} onBack={() => setView("gaze")} />;
-  }
 
   return null;
 }
