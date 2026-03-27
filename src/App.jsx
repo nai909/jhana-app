@@ -153,7 +153,6 @@ function BreathingLava({ active }) {
     scene.add(lavaGroup);
 
     const blobs = [];
-    blobsRef.current = blobs;
 
     // Create blob
     const createBlob = (x, y, z, radius) => {
