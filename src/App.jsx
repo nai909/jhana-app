@@ -40,65 +40,61 @@ const JHANAS = [
 ];
 
 const STEPS = [
-  {
-    title: "Prepare",
-    subtitle: "Relax deeply",
-    icon: "○",
-    visual: "arbor-mundi",
-    detail: "Sit comfortably or lie down. Try to fall asleep, but stop just before you do. Reach a level of physical relaxation you've never experienced while remaining alert. Deep bodily ease with mental clarity.",
-    expanded: "The goal is not trance — it's deep bodily ease with mental clarity. One practical hack: try to fall asleep but stop just before you actually do. This helps you reach a level of physical relaxation most people have never experienced while remaining alert. Clear your mind of distractions. Let the roots of your attention sink down into stillness."
-  },
-  {
-    title: "Feel",
-    subtitle: "Find your scaffold",
-    icon: "♡",
-    visual: "corpus-stellae",
-    detail: "Think of someone you love. A memory of pure joy. A phrase invoking warmth. Focus not on the thought, but on what it does to your body — the warmth in your chest, the subtle expansion. That embodied signature is your meditation object.",
-    expanded: "The scaffolding itself is not your meditation object — the feeling it generates is. You're not focusing on the thought; you're focusing on the emotion, especially its embodied signature. Think of someone you love, then notice what happens in your chest, head, or gut. That warmth, that subtle expansion — that's your object. Not the person, but what thinking about them does to your body. Feel the energy channels begin to open."
-  },
-  {
-    title: "Sustain",
-    subtitle: "Pulse and glide",
-    icon: "◐",
-    visual: "templum-sonorum",
-    detail: "Pulse: gently re-invoke the scaffolding for 5–30 seconds. Glide: let the feeling resonate without effort. When it fades, notice that fade — it may be an invitation to relax deeper. The glide is where the magic happens.",
-    expanded: "Once you have a feeling, the instinct is to grip it. Don't. Pulse means gently re-invoking the scaffolding. Glide means letting the feeling resonate without effort. The biggest mistake is stacking pulses frantically because you're afraid of losing the feeling. The glide is where the magic happens. Think of it like a sneeze — it requires some intentionality, but only happens if you don't think too hard about it. Let the resonance build like sound waves in a temple."
-  },
-  {
-    title: "Deepen",
-    subtitle: "Three questions",
-    icon: "◇",
-    visual: "aqua-vitae",
-    detail: "Can I relax more? Can I enjoy this more? Can I bring more wonder to this? One elegant move: how would it feel to give the feeling away? Joy is often a byproduct of generosity.",
-    expanded: "When you have a feeling established, three questions open pathways into depth. Can I relax more? (Check for tension you might be adding.) Can I enjoy this more? (Are you actually receiving, or just observing?) Can I bring more wonder to this? (Interest without agenda.) One particularly elegant move that blends all three: how would it feel to give the feeling away? This is a pointer to a subtle way of relating to experience. Let yourself flow deeper, like water finding its level."
-  },
-  {
-    title: "Enter",
-    subtitle: "Allow the loop",
-    icon: "◉",
-    visual: "crystallum-infinitum",
-    detail: "Allow the joy to grow and loop upon itself. If it dissipates, pulse again. Don't think too much. When euphoria hits — hands tingling, chest buzzing — you're in J1. It has a distinct momentum, magnitude, and afterglow.",
-    expanded: "Allow the joy to grow and loop upon itself, feeling more and more joyful. Once pulsing and gliding reliably result in a feeling, see if you can allow the feeling to grow by feeding on itself — extend gratitude toward gratitude, or joyfully celebrate your joy. This is the attention-pleasure feedback loop beginning to take hold. If it dissipates, pulse again. Don't think too much. When euphoria hits — hands and chest may tingle — you're entering J1. It will have a distinct type of momentum, magnitude, and afterglow. Let the clarity crystallize."
-  },
-  {
-    title: "Progress",
-    subtitle: "Stay, don't push",
-    icon: "∞",
-    visual: "porta-dimensionum",
-    detail: "To progress through J2–J4: stay in the current state, be present, don't try to change it. It will evolve on its own. Notice how it changes until you find yourself in a qualitatively different state.",
-    expanded: "To progress from J1 to J2, do not try to force anything. Stay in the moment and enjoy the sensation. If it does not dissipate, it will begin to evolve on its own. Notice how it is changing until you find yourself in a qualitatively different state. Repeat to progress further: stay with the current state, be present, don't try to change or interact with it. The door opens before you — not through effort, but through allowing. You are being pulled, not pushed."
-  },
+  // Phase 1: Settling
+  { title: "Settle", subtitle: "Find your position", icon: "○",
+    text: "Sit comfortably or lie down. Whatever lets you be deeply relaxed while alert." },
+  { title: "Soften", subtitle: "Release tension", icon: "○",
+    text: "Scan for tension — especially face, jaw, shoulders. Let it go. Try half as hard." },
+
+  // Phase 2: Scaffolding
+  { title: "Scaffold", subtitle: "Bring up warmth", icon: "♡",
+    text: "Think of someone you love. A memory of pure joy. A phrase invoking warmth." },
+  { title: "Notice", subtitle: "Feel your body", icon: "♡",
+    text: "What does the thought do to your body? Warmth in your chest? A subtle expansion? That's your object." },
+
+  // Phase 3: Pulse and Glide
+  { title: "Pulse", subtitle: "Re-invoke gently", icon: "◐",
+    text: "Gently bring up the scaffolding again for 5–30 seconds. Let the feeling arise." },
+  { title: "Glide", subtitle: "Let it resonate", icon: "◐",
+    text: "Now let the feeling resonate without effort. Don't grip it. The glide is where the magic happens." },
+  { title: "Repeat", subtitle: "Pulse and glide", icon: "◐",
+    text: "When it fades, pulse again. Then glide. The fading may be an invitation to relax deeper." },
+
+  // Phase 4: Deepening
+  { title: "Relax more", subtitle: "First question", icon: "◇",
+    text: "Can I relax more? Check for tension you might be adding. Try half as hard again." },
+  { title: "Enjoy more", subtitle: "Second question", icon: "◇",
+    text: "Can I enjoy this more? Are you actually receiving the feeling, or just observing it?" },
+  { title: "Wonder", subtitle: "Third question", icon: "◇",
+    text: "Can I bring more wonder to this? Interest without agenda. Curiosity without grasping." },
+
+  // Phase 5: The Loop
+  { title: "Allow", subtitle: "Let it grow", icon: "◉",
+    text: "Let the feeling feed on itself. Extend gratitude toward gratitude. Joyfully celebrate your joy." },
+  { title: "Enter", subtitle: "The loop takes hold", icon: "◉",
+    text: "When euphoria hits — hands tingling, chest buzzing — you're in J1. Don't narrate. Just be in it." },
+
+  // Phase 6: Progression
+  { title: "Stay", subtitle: "Don't push", icon: "∞",
+    text: "Stay in the moment. Enjoy the sensation. Don't try to change or interact with it." },
+  { title: "Evolve", subtitle: "Let it transform", icon: "∞",
+    text: "It will evolve on its own. You are being pulled, not pushed. The door opens through allowing." },
 ];
 
-// Map steps to visual scenes for the progressive journey
-const STEP_VISUALS = {
-  "arbor-mundi": ArborMundi,        // Grounding, roots, settling
-  "corpus-stellae": CorpusStellae,   // Body awareness, energy channels
-  "templum-sonorum": TemplumSonorum, // Resonance, waves, rhythm
-  "aqua-vitae": AquaVitae,           // Flowing deeper, releasing
-  "crystallum-infinitum": CrystallumInfinitum, // Clarity crystallizing
-  "porta-dimensionum": PortaDimensionum, // Opening to vastness
-};
+// All available visuals for practice sessions (cycles through each time)
+const PRACTICE_VISUALS = [
+  ArborMundi,
+  CorpusStellae,
+  TemplumSonorum,
+  AquaVitae,
+  OceanusProfundus,
+  CrystallumInfinitum,
+  PortaDimensionum,
+  NervusCosmicus,
+  CaelumMechanicum,
+  MachinaTemporis,
+  LabyrinthusScrum,
+];
 
 const MISTAKES = [
   { title: "Over-efforting", fix: "Try half as hard. Then half as hard again.", desc: "Practice feels like work. Subtle strain in forehead or jaw. You're concentrating at the experience rather than resting in it. There exists a level of non-effort most people have never experienced while remaining alert.", color: "#E24B4A" },
@@ -243,28 +239,18 @@ function GazeSceneWrapper({ sceneId, onBack }) {
   );
 }
 
-// Practice Visual Background - renders the visual for the current step with crossfade
-function PracticeVisual({ stepIndex, active }) {
-  const [prevStep, setPrevStep] = useState(stepIndex);
-  const [transitioning, setTransitioning] = useState(false);
-
-  useEffect(() => {
-    if (stepIndex !== prevStep && active) {
-      setTransitioning(true);
-      const timer = setTimeout(() => {
-        setPrevStep(stepIndex);
-        setTransitioning(false);
-      }, 800); // Crossfade duration
-      return () => clearTimeout(timer);
-    }
-  }, [stepIndex, prevStep, active]);
-
+// Practice Visual Background - one visual per session, opacity increases with progress
+function PracticeVisual({ visualIndex, stepIndex, active }) {
   if (!active) return null;
 
-  const currentVisualId = STEPS[stepIndex]?.visual;
-  const prevVisualId = STEPS[prevStep]?.visual;
-  const CurrentVisual = STEP_VISUALS[currentVisualId];
-  const PrevVisual = STEP_VISUALS[prevVisualId];
+  const VisualComponent = PRACTICE_VISUALS[visualIndex % PRACTICE_VISUALS.length];
+
+  // Opacity: starts at 0.1, increases to 0.6 by the final step
+  const progress = stepIndex / (STEPS.length - 1);
+  const visualOpacity = 0.1 + progress * 0.5;
+
+  // Overlay darkness: starts heavy, gets lighter as you progress
+  const overlayBase = 0.85 - progress * 0.25;
 
   return (
     <div style={{
@@ -276,47 +262,32 @@ function PracticeVisual({ stepIndex, active }) {
       zIndex: 0,
       overflow: "hidden"
     }}>
-      {/* Previous visual (fading out) */}
-      {transitioning && PrevVisual && prevVisualId !== currentVisualId && (
+      {/* The visual */}
+      {VisualComponent && (
         <div style={{
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
           height: "100%",
-          opacity: 0,
-          transition: "opacity 0.8s ease-out",
+          opacity: visualOpacity,
+          transition: "opacity 1.5s ease-in-out",
           zIndex: 1
         }}>
-          <PrevVisual />
+          <VisualComponent />
         </div>
       )}
 
-      {/* Current visual */}
-      {CurrentVisual && (
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          opacity: transitioning ? 0 : 0.35,
-          transition: "opacity 0.8s ease-in",
-          zIndex: 2
-        }}>
-          <CurrentVisual />
-        </div>
-      )}
-
-      {/* Dark overlay for readability */}
+      {/* Dark overlay for readability - gets lighter as you progress */}
       <div style={{
         position: "absolute",
         top: 0,
         left: 0,
         width: "100%",
         height: "100%",
-        background: "linear-gradient(to bottom, rgba(8,8,11,0.75) 0%, rgba(8,8,11,0.85) 50%, rgba(8,8,11,0.9) 100%)",
-        zIndex: 3
+        background: `linear-gradient(to bottom, rgba(8,8,11,${overlayBase}) 0%, rgba(8,8,11,${overlayBase + 0.05}) 100%)`,
+        transition: "background 1.5s ease",
+        zIndex: 2
       }} />
     </div>
   );
@@ -330,6 +301,7 @@ export default function JhanaApp() {
   const [em, setEm] = useState(null);
   const [es, setEs] = useState(null);
   const [gazeScene, setGazeScene] = useState(0);
+  const [practiceVisual, setPracticeVisual] = useState(0); // Cycles through visuals each session
   const goHome = () => { setView("home"); setPa(false); };
 
   const SCENES = [
@@ -534,8 +506,8 @@ export default function JhanaApp() {
 
   if (view === "practice") return (
     <>
-      {/* Visual background layer */}
-      <PracticeVisual stepIndex={ps} active={pa} />
+      {/* Visual background layer - one visual per session, brightens as you progress */}
+      <PracticeVisual visualIndex={practiceVisual} stepIndex={ps} active={pa} />
 
       <Page>
         <div style={{ position: "relative", zIndex: 10 }}>
@@ -548,7 +520,7 @@ export default function JhanaApp() {
                 <p style={{ fontSize: 10, fontWeight: 600, color: DK.textDim, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: 0.8 }}>Before you begin</p>
                 <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.75 }}>Find a comfortable position. Sit or lie down — whatever lets you be deeply relaxed while alert. Close your eyes when ready. If you feel strain, try half as hard. Then half as hard again.</p>
               </div>
-              <button onClick={() => { setPa(true); setPs(0); }} style={{ padding: "10px 40px", borderRadius: 20, fontSize: 13, fontWeight: 500, border: "none", background: `${DK.accent}18`, color: DK.accent, cursor: "pointer", letterSpacing: 0.3 }}>Begin</button>
+              <button onClick={() => { setPa(true); setPs(0); setPracticeVisual(v => v + 1); }} style={{ padding: "10px 40px", borderRadius: 20, fontSize: 13, fontWeight: 500, border: "none", background: `${DK.accent}18`, color: DK.accent, cursor: "pointer", letterSpacing: 0.3 }}>Begin</button>
             </div>
           ) : (
             <div style={{ textAlign: "center" }}>
@@ -572,7 +544,7 @@ export default function JhanaApp() {
                   <div style={{ fontSize: 18, fontWeight: 500 }}>{STEPS[ps].title}</div>
                 </div>
                 <div style={{ fontSize: 12, color: DK.accent, marginBottom: 12, opacity: 0.7 }}>{STEPS[ps].subtitle}</div>
-                <p style={{ fontSize: 13, color: DK.text, lineHeight: 1.8, margin: "0 auto", maxWidth: 480, opacity: 0.85 }}>{STEPS[ps].expanded}</p>
+                <p style={{ fontSize: 14, color: DK.text, lineHeight: 1.8, margin: "0 auto", maxWidth: 440, opacity: 0.9 }}>{STEPS[ps].text}</p>
               </div>
 
               {/* Progress dots */}
@@ -595,14 +567,6 @@ export default function JhanaApp() {
                 ))}
               </div>
 
-              {/* Three questions reminder for deepen stage */}
-              {ps >= 3 && ps < 5 && (
-                <div style={{ display: "flex", gap: 5, justifyContent: "center", flexWrap: "wrap", marginBottom: 18 }}>
-                  {["Can I relax more?", "Can I enjoy this more?", "Can I bring more wonder?"].map((q, i) => (
-                    <Chip key={i}>{q}</Chip>
-                  ))}
-                </div>
-              )}
 
               {/* Navigation buttons */}
               <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
