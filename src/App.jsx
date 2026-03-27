@@ -108,11 +108,8 @@ const MISTAKES = [
 // Wireframe Lava Lamp breathing visual
 function BreathingLava({ active }) {
   const containerRef = useRef(null);
-  const sceneRef = useRef(null);
   const rendererRef = useRef(null);
   const clockRef = useRef(null);
-  const blobsRef = useRef([]);
-  const [phase, setPhase] = useState("inhale");
 
   useEffect(() => {
     if (!active || !containerRef.current) return;
@@ -267,7 +264,7 @@ function BreathingLava({ active }) {
         bp = 0;
       }
 
-      return { bp, phaseName: phases[phaseIdx].name };
+      return { bp };
     };
 
     // Spring physics for smooth transitions
@@ -278,10 +275,7 @@ function BreathingLava({ active }) {
       if (!isMounted) return;
       animationId = requestAnimationFrame(animate);
       const elapsed = clockRef.current.getElapsedTime();
-      const { bp: targetBreath, phaseName } = getBreathPhase(elapsed);
-
-      // Update phase label
-      setPhase(phaseName);
+      const { bp: targetBreath } = getBreathPhase(elapsed);
 
       // Spring physics
       const breathForce = (targetBreath - currentBreath) * 0.004;
@@ -386,22 +380,7 @@ function BreathingLava({ active }) {
   }, [active]);
 
   return (
-    <div style={{ width: 280, height: 280, position: "relative" }}>
-      <div ref={containerRef} style={{ width: "100%", height: "100%" }} />
-      <div style={{
-        position: "absolute",
-        bottom: -24,
-        left: 0,
-        right: 0,
-        textAlign: "center",
-        fontSize: 11,
-        fontWeight: 500,
-        color: "rgba(107,197,210,0.4)",
-        letterSpacing: "0.05em"
-      }}>
-        {phase}
-      </div>
-    </div>
+    <div ref={containerRef} style={{ width: 280, height: 280 }} />
   );
 }
 
@@ -698,11 +677,10 @@ export default function JhanaApp() {
             </div>
           ) : (
             <div style={{ textAlign: "center" }}>
-              {/* Breathing circle - fades as you progress deeper */}
-              <div style={{ display: "flex", justifyContent: "center", padding: "12px 0", opacity: ps === 0 ? 1 : Math.max(0, 1 - ps * 0.35), transition: "opacity 1s ease", pointerEvents: ps > 1 ? "none" : "auto" }}>
-                {ps <= 2 && <BreathingLava active={pa} />}
+              {/* Breathing lava - visible throughout, gently fades as you deepen */}
+              <div style={{ display: "flex", justifyContent: "center", padding: "12px 0", opacity: Math.max(0.4, 1 - ps * 0.04), transition: "opacity 1s ease" }}>
+                <BreathingLava active={pa} />
               </div>
-              {ps > 2 && <div style={{ height: 40 }} />}
 
               {/* Step indicator with visual name */}
               <div style={{ marginBottom: 8 }}>
