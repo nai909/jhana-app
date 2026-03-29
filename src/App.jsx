@@ -103,6 +103,7 @@ const PRACTICE_VISUALS = [
 const MISTAKES = [
   { title: "Over-efforting", fix: "Try half as hard. Then half as hard again.", desc: "Practice feels like work. Subtle strain in forehead or jaw. You're concentrating at the experience rather than resting in it. There exists a level of non-effort most people have never experienced while remaining alert.", color: "#E24B4A" },
   { title: "Sensation-hunting", fix: "You're not scanning for a sensation. You're becoming it.", desc: "You're scanning the body for 'the right feeling.' It feels clinical. Emotions live in the body but they're not just sensations — there's a felt quality that raw tracking doesn't capture.", color: "#378ADD" },
+  { title: "Narrating your experience", fix: "The moment you ask 'Is this jhana?' — you've left it.", desc: "Commentary pulls you out. 'This is going well.' 'I think I'm getting somewhere.' 'Is this it?' Each thought creates distance. When you're truly in it, there's no narrator left to ask. If you catch yourself narrating, gently return to feeling.", color: "#F2C94C" },
   { title: "Scaffolding goes flat", fix: "Stay with it. This is exactly the skill you're building.", desc: "Your scaffolding worked, then stopped. This is progress — the novelty bonus faded. Now learn to relate appreciatively without the extra buzz. Find enjoyment in subtler territory.", color: "#EF9F27" },
   { title: "Relaxing away, not into", fix: "The emotion doesn't need to disappear. Your war with it does.", desc: "Negative emotion arises and you try to relax it away. Instead, relax into it — allow it fully with less resistance. This distinction is subtle and usually invisible to the person making it.", color: "#9B8EC4" },
   { title: "Following something boring", fix: "If the mind wanders, the anchor might be the problem — not you.", desc: "Standard meditation asks you to follow something neutral like the breath. Neutral is often boring. If it's boring, the mind wanders. That's your nervous system doing exactly what it's designed to do — not a character flaw. Find an anchor that's genuinely pleasant.", color: "#6BC5D2" },
@@ -110,7 +111,7 @@ const MISTAKES = [
 ];
 
 // Wireframe Lava Lamp breathing visual
-function BreathingLava({ active }) {
+function BreathingLava({ active, size = 280 }) {
   const containerRef = useRef(null);
   const rendererRef = useRef(null);
   const clockRef = useRef(null);
@@ -123,7 +124,7 @@ function BreathingLava({ active }) {
     camera.position.set(0, 0, 6);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(280, 280);
+    renderer.setSize(size, size);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
     containerRef.current.appendChild(renderer.domElement);
@@ -379,10 +380,10 @@ function BreathingLava({ active }) {
       glowMat.dispose();
       renderer.dispose();
     };
-  }, [active]);
+  }, [active, size]);
 
   return (
-    <div ref={containerRef} style={{ width: 280, height: 280 }} />
+    <div ref={containerRef} style={{ width: size, height: size }} />
   );
 }
 
@@ -475,12 +476,9 @@ export default function JhanaApp() {
 
   if (view === "home") return (
     <Page>
-      <div style={{ textAlign: "center", padding: "3rem 0 2rem" }}>
-        <div style={{ marginBottom: 22 }}>
-          <svg width="52" height="52" viewBox="0 0 64 64">
-            {[0,1,2,3].map(i => <circle key={i} cx="32" cy="32" r={8+i*6} fill="none" stroke={JHANAS[i].color} strokeWidth={0.6} opacity={0.35+i*0.08} />)}
-            <circle cx="32" cy="32" r="2" fill={DK.accent} opacity={0.7} />
-          </svg>
+      <div style={{ textAlign: "center", padding: "2rem 0 2rem" }}>
+        <div style={{ marginBottom: 12, display: "flex", justifyContent: "center", opacity: 0.7 }}>
+          <BreathingLava active={true} size={120} />
         </div>
         <h1 style={{ fontSize: 24, fontWeight: 500, margin: "0 0 6px" }}>Entering the jhanas</h1>
         <p style={{ fontSize: 13, color: DK.textMuted, margin: 0, lineHeight: 1.5 }}>A guided practice for the attention-pleasure feedback loop</p>
@@ -494,7 +492,7 @@ export default function JhanaApp() {
       </Card>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 26 }}>
-        {[{ k:"map",t:"The map",s:"9 jhana states",i:"◎" },{ k:"method",t:"The method",s:"Step-by-step guide",i:"→" },{ k:"mistakes",t:"Common mistakes",s:"6 traps to avoid",i:"△" },{ k:"practice",t:"Practice",s:"Guided session",i:"●" }].map(x =>
+        {[{ k:"map",t:"The map",s:"9 jhana states",i:"◎" },{ k:"method",t:"The method",s:"Step-by-step guide",i:"→" },{ k:"mistakes",t:"Common mistakes",s:"7 traps to avoid",i:"△" },{ k:"practice",t:"Practice",s:"Guided session",i:"●" }].map(x =>
           <Card key={x.k} onClick={() => setView(x.k)}>
             <div style={{ fontSize: 16, marginBottom: 7, opacity: 0.3 }}>{x.i}</div>
             <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 2 }}>{x.t}</div>
@@ -535,7 +533,7 @@ export default function JhanaApp() {
 
       <div style={{ padding: "1.5rem 0", borderTop: `0.5px solid ${DK.border}` }}>
         <h2 style={{ fontSize: 15, fontWeight: 500, margin: "0 0 14px" }}>Key principles</h2>
-        {[{ p:"Relaxation over effort", d:"You relax first, and focus emerges as a side effect." },{ p:"Feeling over technique", d:"Focus on the emotional experience in the body." },{ p:"Play over strain", d:"Flow states are innately human — you've touched them in play, music, love." },{ p:"Curiosity over self-criticism", d:"Reflect like a scientist, play like a child." },{ p:"Holding goals without striving", d:"You can want a jhana. The game is how you relate to that goal — with play and openness, not desperation." }].map((x,i) =>
+        {[{ p:"Relaxation over effort", d:"You relax first, and focus emerges as a side effect." },{ p:"Feeling over technique", d:"Focus on the emotional experience in the body." },{ p:"Play over strain", d:"Flow states are innately human — you've touched them in play, music, love." },{ p:"Curiosity over self-criticism", d:"Reflect like a scientist, play like a child." },{ p:"Holding goals without striving", d:"You can want a jhana, but you can't crave your way into one." }].map((x,i) =>
           <div key={i} style={{ display: "flex", gap: 12, marginBottom: 14 }}>
             <div style={{ width: 2.5, minHeight: "100%", borderRadius: 2, background: JHANAS[i].color, opacity: 0.35, flexShrink: 0 }} />
             <div>
@@ -544,6 +542,37 @@ export default function JhanaApp() {
             </div>
           </div>
         )}
+      </div>
+
+      <div style={{ padding: "1.5rem 0", borderTop: `0.5px solid ${DK.border}` }}>
+        <h2 style={{ fontSize: 15, fontWeight: 500, margin: "0 0 12px" }}>Preparation</h2>
+        <p style={{ fontSize: 12, color: DK.textMuted, lineHeight: 1.7, margin: "0 0 14px" }}>The state you arrive in matters. You can't force your way into jhana from tension — but you can prepare your body for ease, and ease opens the door.</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 14 }}>
+          {[
+            { tip: "Movement first", desc: "A short walk or run before sitting warms the body and quiets mental chatter." },
+            { tip: "Temperature contrast", desc: "Cold to warm, warm to cold. A cold shower followed by warmth, or a sauna, deeply relaxes the nervous system." },
+            { tip: "Music", desc: "Find tracks that reliably move you emotionally. Music reaches states that deliberate effort alone cannot." },
+            { tip: "Comfortable position", desc: "Lying down is fine. The point is to enjoy and stay relaxed — start from comfort." },
+          ].map((x, i) => (
+            <div key={i} style={{ background: "rgba(255,255,255,0.025)", borderRadius: 8, padding: "8px 12px", flex: "1 1 calc(50% - 6px)", minWidth: 140 }}>
+              <div style={{ fontSize: 11, fontWeight: 500, marginBottom: 2, color: DK.text }}>{x.tip}</div>
+              <div style={{ fontSize: 10, color: DK.textMuted, lineHeight: 1.5 }}>{x.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ padding: "1.5rem 0", borderTop: `0.5px solid ${DK.border}` }}>
+        <h2 style={{ fontSize: 15, fontWeight: 500, margin: "0 0 12px" }}>Working with difficult emotions</h2>
+        <p style={{ fontSize: 12, color: DK.textMuted, lineHeight: 1.7, margin: "0 0 10px" }}>Jhana isn't just about bliss — it creates conditions to work with charged memories and emotions safely. This happens through memory reconsolidation: reactivate something difficult while held in overwhelming safety or love, and the two wash over each other, resetting your default response.</p>
+        <p style={{ fontSize: 12, color: DK.textMuted, lineHeight: 1.7, margin: "0 0 10px" }}>Build yourself up first. Use scaffolding to climb into a stable, loving state. Only then, when you feel solid, gently bring up the memory or emotion. Let it be held by the warmth already present. You're not analyzing or processing — you're allowing two feelings to coexist.</p>
+        <p style={{ fontSize: 12, color: DK.text, lineHeight: 1.7, margin: 0, opacity: 0.8, fontStyle: "italic" }}>One practitioner, after years of avoiding grief, finally sat with the loss of her daughter — held in jhana, surrounded by warmth. The memory no longer arrives like a door slamming shut. Sadness remains, but underneath it now: gratitude.</p>
+      </div>
+
+      <div style={{ padding: "1.5rem 0", borderTop: `0.5px solid ${DK.border}` }}>
+        <h2 style={{ fontSize: 15, fontWeight: 500, margin: "0 0 12px" }}>Afterglow</h2>
+        <p style={{ fontSize: 12, color: DK.textMuted, lineHeight: 1.7, margin: "0 0 10px" }}>The state doesn't end when you open your eyes. After a good sit, you may notice food tastes sharper, sounds feel more present, colors appear brighter. This is afterglow — a reminder of how much we normally miss.</p>
+        <p style={{ fontSize: 12, color: DK.textMuted, lineHeight: 1.7, margin: 0 }}>With regular practice, afterglow lingers longer between sessions. The temporary states become less temporary. Altered states, practiced repeatedly, alter traits.</p>
       </div>
     </Page>
   );
