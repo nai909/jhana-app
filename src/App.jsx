@@ -42,43 +42,47 @@ const JHANAS = [
 const STEPS = [
   // Phase 1: Settling
   { title: "Settle", subtitle: "Find your position", icon: "○",
-    text: "Sit comfortably or lie down. Whatever lets you be deeply relaxed while alert." },
+    text: "Sit or lie down — whatever lets you be deeply relaxed while staying alert. Try to reach the edge of sleep without falling in." },
   { title: "Soften", subtitle: "Release tension", icon: "○",
-    text: "Scan for tension — especially face, jaw, shoulders. Let it go. Try half as hard." },
+    text: "Scan your face, jaw, shoulders, hands. Let tension melt. If you're trying at all, try half as hard. Then half again." },
+  { title: "Breathe", subtitle: "Let breath settle", icon: "○",
+    text: "Don't control the breath — let it become shallow and quiet on its own. When it feels like you've almost stopped breathing, you're ready." },
 
   // Phase 2: Scaffolding
   { title: "Scaffold", subtitle: "Bring up warmth", icon: "♡",
-    text: "Think of someone you love. A memory of pure joy. A phrase invoking warmth." },
-  { title: "Notice", subtitle: "Feel your body", icon: "♡",
-    text: "What does the thought do to your body? Warmth in your chest? A subtle expansion? That's your object." },
+    text: "Think of someone you love. A moment of pure joy. A phrase that opens your heart. Use whatever reliably creates warmth." },
+  { title: "Locate", subtitle: "Find it in your body", icon: "♡",
+    text: "Where do you feel it? Warmth in the chest? Tingling in the hands? A softening behind the eyes? That physical signature is your anchor." },
 
   // Phase 3: Pulse and Glide
   { title: "Pulse", subtitle: "Re-invoke gently", icon: "◐",
-    text: "Gently bring up the scaffolding again for 5–30 seconds. Let the feeling arise." },
+    text: "Bring up the memory or thought again for 5–30 seconds. Let the warm feeling arise fresh. Don't force — invite." },
   { title: "Glide", subtitle: "Let it resonate", icon: "◐",
-    text: "Now let the feeling resonate without effort. Don't grip it. The glide is where the magic happens." },
-  { title: "Repeat", subtitle: "Pulse and glide", icon: "◐",
-    text: "When it fades, pulse again. Then glide. The fading may be an invitation to relax deeper." },
+    text: "Now drop the thought and let the feeling hum on its own. Don't grip. The glide — not the pulse — is where the magic happens." },
+  { title: "Rhythm", subtitle: "Pulse and glide", icon: "◐",
+    text: "When warmth fades, pulse again. Then glide. Find a rhythm. The fading isn't failure — it may be an invitation to relax deeper." },
 
   // Phase 4: Deepening
   { title: "Relax more", subtitle: "First question", icon: "◇",
-    text: "Can I relax more? Check for tension you might be adding. Try half as hard again." },
+    text: "Can I relax more? You're probably still adding subtle effort. Check your forehead, jaw, around the eyes. Soften again." },
   { title: "Enjoy more", subtitle: "Second question", icon: "◇",
-    text: "Can I enjoy this more? Are you actually receiving the feeling, or just observing it?" },
+    text: "Can I enjoy this more? Are you actually receiving the feeling, or just watching it from a distance? Step into it." },
   { title: "Wonder", subtitle: "Third question", icon: "◇",
-    text: "Can I bring more wonder to this? Interest without agenda. Curiosity without grasping." },
+    text: "Can I bring more wonder to this? Approach like a child discovering something new. Curiosity without agenda." },
 
   // Phase 5: The Loop
   { title: "Allow", subtitle: "Let it grow", icon: "◉",
-    text: "Let the feeling feed on itself. Extend gratitude toward gratitude. Joyfully celebrate your joy." },
-  { title: "Enter", subtitle: "The loop takes hold", icon: "◉",
-    text: "When euphoria hits — hands tingling, chest buzzing — you're in J1. Don't narrate. Just be in it." },
+    text: "Let the good feeling feed on itself. Feel grateful for the gratitude. Enjoy the enjoyment. This is the feedback loop beginning." },
+  { title: "Recognize", subtitle: "Signs of entry", icon: "◉",
+    text: "Tingling spreading through hands or body. Waves of pleasure. Goosebumps. A smile arising on its own. Warmth flooding the chest. These are signs you're entering." },
+  { title: "Arrive", subtitle: "Unmistakable shift", icon: "◉",
+    text: "When it takes hold, you'll know. Joy soaking the whole body. An altered state with its own momentum. Don't narrate it — just be in it." },
 
   // Phase 6: Progression
   { title: "Stay", subtitle: "Don't push", icon: "∞",
-    text: "Stay in the moment. Enjoy the sensation. Don't try to change or interact with it." },
+    text: "Remain with what's here. Don't try to intensify or change it. The state deepens on its own when you stop interfering." },
   { title: "Evolve", subtitle: "Let it transform", icon: "∞",
-    text: "It will evolve on its own. You are being pulled, not pushed. The door opens through allowing." },
+    text: "With time, the buzzing energy settles into something warmer, calmer. You're being pulled deeper, not pushing. Let it unfold." },
 ];
 
 // All available visuals for practice sessions (cycles through each time)
@@ -490,7 +494,7 @@ export default function JhanaApp() {
       </Card>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 26 }}>
-        {[{ k:"map",t:"The map",s:"9 jhana states",i:"◎" },{ k:"method",t:"The method",s:"14-step practice",i:"→" },{ k:"mistakes",t:"Common mistakes",s:"6 traps to avoid",i:"△" },{ k:"practice",t:"Practice",s:"Guided session",i:"●" }].map(x =>
+        {[{ k:"map",t:"The map",s:"9 jhana states",i:"◎" },{ k:"method",t:"The method",s:"Step-by-step guide",i:"→" },{ k:"mistakes",t:"Common mistakes",s:"6 traps to avoid",i:"△" },{ k:"practice",t:"Practice",s:"Guided session",i:"●" }].map(x =>
           <Card key={x.k} onClick={() => setView(x.k)}>
             <div style={{ fontSize: 16, marginBottom: 7, opacity: 0.3 }}>{x.i}</div>
             <div style={{ fontSize: 13, fontWeight: 500, marginBottom: 2 }}>{x.t}</div>
@@ -589,7 +593,7 @@ export default function JhanaApp() {
     <Page>
       <Back fn={goHome} />
       <h1 style={{ fontSize: 18, fontWeight: 500, margin: "0 0 4px" }}>The method</h1>
-      <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 4px", lineHeight: 1.6 }}>Jhourney's approach in 14 steps. The entire method reduces to two instructions: bring up an open-hearted feeling, then relax into it.</p>
+      <p style={{ fontSize: 12, color: DK.textMuted, margin: "0 0 4px", lineHeight: 1.6 }}>A step-by-step guide. The entire method reduces to two instructions: bring up an open-hearted feeling, then relax into it.</p>
       <p style={{ fontSize: 11, color: DK.textDim, margin: "0 0 18px", fontStyle: "italic" }}>Tap any step to expand.</p>
       {STEPS.map((st, i) => { const open = es === i; return (
         <Card key={i} onClick={() => setEs(open ? null : i)} style={{ marginBottom: 6, borderLeft: open ? `2px solid ${DK.accent}40` : `0.5px solid ${DK.border}`, borderRadius: open ? "0 12px 12px 0" : 12 }}>
